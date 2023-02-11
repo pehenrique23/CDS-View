@@ -1,0 +1,19 @@
+@EndUserText.label: 'CDS with Table Function'
+define table function ZCDS_RXTZ_M3A2
+with parameters 
+@Environment.systemField: #CLIENT
+client : abap.clnt
+returns {
+  key client : abap.clnt;
+  key carrid : s_carrid;
+  connid : s_conn_id;
+  carrname : s_carrname;
+  currcode : s_currcode;
+  url : s_url;
+  countryfr : land1;
+  airpfrom : s_fromairp;
+  countryto : land1;
+  cityfrom : s_from_cit;
+  cityto : s_to_city;
+}
+implemented by method zcl_amdp_rxtzan_m3a2=>get_flights;
