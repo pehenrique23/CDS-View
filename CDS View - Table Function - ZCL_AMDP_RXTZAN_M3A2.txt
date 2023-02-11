@@ -1,0 +1,38 @@
+CLASS zcl_amdp_rxtzan_m3a2 DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+  INTERFACES if_amdp_marker_hdb.
+
+  CLASS-METHODS: get_flights for TABLE FUNCTION ZCDS_RXTZ_M3A2.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+CLASS zcl_amdp_rxtzan_m3a2 IMPLEMENTATION.
+METHOD get_flights BY DATABASE FUNCTION
+                      FOR HDB
+                      LANGUAGE SQLSCRIPT USING scarr spfli.
+
+  RETURN SELECT sc.mandt as client,
+          sc.carrid,
+          sp.connid,
+          sc.carrname,
+          sc.currcode,
+          sc.url,
+          sp.countryfr,
+          sp.airpfrom,
+          sp.countryto,
+          sp.cityfrom,
+          sp.cityto
+   FROM scarr as sc
+   inner join spfli as sp
+   on sc.carrid = sp.carrid;
+
+ENDMETHOD.
+
+
+ENDCLASS.
