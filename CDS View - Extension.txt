@@ -1,0 +1,7 @@
+@AbapCatalog.sqlViewAppendName: 'ZRXTZAN'
+@EndUserText.label: 'CDS with Extension'
+extend view ZCDS_RXTZ_M2A2 with ZCDS_RXTZ_M3A3 {
+// _scarr_to_spfli é herança da View ZCDS_RXTZ_M2A2
+    _scarr_to_spfli.cityfrom,
+    _scarr_to_spfli.cityto
+}
